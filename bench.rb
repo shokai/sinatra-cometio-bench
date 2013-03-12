@@ -7,10 +7,13 @@ url = ARGV.shift || 'http://localhost:5000/cometio/io'
 
 push_at = nil
 times = []
+
+EM.epoll
+EM.set_descriptor_table_size 20000
 EM::run do
   client = nil
 
-  200.times do
+  500.times do
     client = EM::CometIO::Client.new(url).connect
 
     client.on :foo do |data|
