@@ -1,13 +1,15 @@
 
-class TestApp < Sinatra::Application
+class TestApp < Sinatra::Base
+  register Sinatra::CometIO
+  io = Sinatra::CometIO
 
   get '/' do
     "testapp - sinatra-cometio v#{Sinatra::CometIO::VERSION}"
   end
 
-  CometIO.on :foo do |data, from|
+  io.on :foo do |data, from|
     p data
-    push :foo, data
+    io.push :foo, data
   end
 
 end
