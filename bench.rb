@@ -23,7 +23,7 @@ EM::run do
 
   client.on :connect do |session|
     puts "connect (session:#{session})"
-    EM::add_periodic_timer 2 do
+    EM::add_periodic_timer 5 do
       unless times.empty?
         puts "#{times.size} results"
         puts times.inject(:+)/times.size
